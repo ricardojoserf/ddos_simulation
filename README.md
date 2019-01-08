@@ -1,6 +1,6 @@
-# ddos_generation_script
+# ddos_simulation
 
-DDoS simulation written in Python using "scapy" and "multiprocessing" libraries
+DDoS simulation written in Python using "scapy" and "multiprocessing" libraries. Used for educational purposes
 
 ## Options:
 
