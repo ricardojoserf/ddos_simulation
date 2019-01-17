@@ -5,6 +5,7 @@ import scapy
 from scapy.all import *
 import config
 import multiprocessing, time
+from six.moves import input as raw_input
 
 
 dst_ip = raw_input("IP to attack: ") if config.dst_ip == "" else config.dst_ip
@@ -60,12 +61,12 @@ elif type == "2":
 elif type == "3":
 	p.map(func=sendPacketT3,iterable=ips) 
 else:
-	print "Type unknown"
+	print("Type unknown")
 p.close()
 
 total_s = float(time.time() - t0)
 total_p = int(n_ips) * int(n_msg)
 ratio = float(total_p)/float(total_s)
-print "\nTotal: \nTime:\t%d seconds" % (total_s)
-print "Packets:\t%d \nSpeed:\t%d p/s" % (total_p, ratio)
+print ("\nTotal: \nTime:\t%d seconds" % (total_s))
+print ("Packets:\t%d \nSpeed:\t%d p/s" % (total_p, ratio))
 

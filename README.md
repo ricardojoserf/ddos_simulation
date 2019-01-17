@@ -2,6 +2,13 @@
 
 DDoS simulation written in Python using "scapy" and "multiprocessing" libraries. Used for educational purposes
 
+
+## Example
+
+![Screenshot](images/Screenshot_1.png)
+
+
+
 ## Options:
 
 There are 3 different DDoS attacks:
@@ -30,7 +37,21 @@ You can set different options filling the "config.py" file:
 - Threads
 
 
-## Example
 
-![Screenshot](images/Screenshot_1.png)
+## Requirements
 
+Python 2.x:
+
+```
+pip install scapy
+```
+
+Python 3.x:
+
+```
+pip3 install scapy
+```
+
+## Note
+
+Tested both in Python2.x (2.7.15rc1) and Python 3.x (3.6.7)
