@@ -2,10 +2,7 @@
 
 DDoS simulation written in Python using "scapy" and "multiprocessing" libraries. Used for educational purposes
 
-
-## Example
-
-![Screenshot](images/Screenshot_1.png)
+![Screenshot](https://i.imgur.com/f9yRPDP.png)
 
 
 
