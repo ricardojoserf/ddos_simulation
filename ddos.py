@@ -27,12 +27,13 @@ def get_text_total_ips():
 	f_ips = []
 	for line in open("ips.txt"):
 		f_ips.append(line.replace('\n',''))
-	if len(f_ips) == 0:
+	if len(f_ips) <= 1:
 		print("[-] Error: You chose to load IP addresses from ips.txt but the file is empty")
-	for n in range ( 0, ( int(n_ips) / len(f_ips) ) ):
+		sys.exit(0)
+	for n in range ( 0, int( int(n_ips) / len(f_ips) ) ):
 		for ip in f_ips:
 			ips.append(ip)
-	for j in range ( 0, ( int(n_ips) % len(f_ips) ) ):
+	for j in range ( 0, int( int(n_ips) % len(f_ips) ) ):
 		ips.append(f_ips[j])
 
 load = "suchaload"*162
